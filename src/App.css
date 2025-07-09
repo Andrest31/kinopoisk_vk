@@ -1,0 +1,79 @@
+/* src/App.css */
+:root {
+  /* Цвета, вдохновленные Кинопоиском */
+  --kp-dark-bg: #1a1a1a;
+  --kp-card-bg: #222222;
+  --kp-text-primary: #f0f0f0;
+  --kp-text-secondary: #aaaaaa;
+  --kp-accent-yellow: #f5c518;
+  --kp-border-color: #333333;
+}
+
+body {
+  margin: 0;
+  background-color: var(--kp-dark-bg);
+  color: var(--kp-text-primary);
+  font-family: 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.app-container {
+  padding: 0;
+  background-color: var(--kp-dark-bg);
+}
+
+.app-title {
+  color: var(--kp-text-primary);
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 2500px) {
+  .movie-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .movie-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .movie-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .movie-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .movie-list {
+    grid-template-columns: 1fr;
+  }
+  #root {
+    padding: 1rem;
+  }
+}

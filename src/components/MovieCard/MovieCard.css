@@ -1,0 +1,61 @@
+/* src/components/MovieCard.css */
+.movie-card {
+  background-color: var(--kp-card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Более выраженная тень */
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* Текст внутри карточки выравниваем по левому краю */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer; /* Добавим курсор pointer для имитации ссылки */
+}
+
+.movie-card:hover {
+  transform: translateY(-5px); /* Эффект поднятия при наведении */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Усиленная тень при наведении */
+}
+
+.movie-poster {
+  width: 100%;
+  height: 330px; /* Увеличим высоту постера */
+  object-fit: cover;
+  display: block; /* Убираем лишние пробелы под изображением */
+}
+
+.movie-info {
+  padding: 15px;
+  flex-grow: 1; /* Чтобы информация занимала все доступное пространство */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Чтобы рейтинг был внизу, если нужно */
+}
+
+.movie-info h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  color: var(--kp-text-primary);
+  white-space: nowrap; /* Запрещаем перенос строки */
+  overflow: hidden; /* Обрезаем текст, который не помещается */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.movie-info p {
+  margin: 4px 0;
+  font-size: 0.95em;
+  color: var(--kp-text-secondary);
+}
+
+.movie-info .movie-year,
+.movie-info .movie-genres {
+  font-size: 0.85em;
+  color: var(--kp-text-secondary);
+}
+
+.movie-info .movie-rating {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--kp-accent-yellow); /* Акцентный цвет для рейтинга */
+  margin-top: 10px; /* Отделяем рейтинг от остальной информации */
+}
