@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { mockMovies, type Movie } from '../../data/movies';
 import AddToFavoritesModal from '../../components/AddModal';
 import styles from './styles.module.css';
 
 export default function MovieDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -18,6 +19,15 @@ export default function MovieDetails() {
 
   const handleAddToFavorites = () => {
     setShowModal(true);
+  };
+
+  const handleRemoveFromFavorites = () => {
+    if (!movie) return;
+    
+    const favorites = JSON.parse(localStorage.getItem('favoriteMovies') || '[]');
+    const updatedFavorites = favorites.filter((fav: Movie) => fav.id !== movie.id);
+    localStorage.setItem('favoriteMovies', JSON.stringify(updatedFavorites));
+    setIsFavorite(false);
   };
 
   const confirmAddToFavorites = () => {
@@ -35,7 +45,17 @@ export default function MovieDetails() {
   };
 
   if (!movie) {
-    return <div className={styles.notFound}>Фильм не найден</div>;
+    return (
+      <div className={styles.notFound}>
+        <p>Фильм не найден</p>
+        <button 
+          className={styles.backButton}
+          onClick={() => navigate(-1)}
+        >
+          Вернуться назад
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -61,13 +81,21 @@ export default function MovieDetails() {
           </div>
           <p className={styles.description}>{movie.description}</p>
           
-          <button 
-            className={styles.favoriteButton}
-            onClick={isFavorite ? undefined : handleAddToFavorites}
-            disabled={isFavorite}
-          >
-            {isFavorite ? 'В избранном' : 'Добавить в избранное'}
-          </button>
+          {isFavorite ? (
+            <button 
+              className={styles.removeButton}
+              onClick={handleRemoveFromFavorites}
+            >
+              Удалить из избранного
+            </button>
+          ) : (
+            <button 
+              className={styles.favoriteButton}
+              onClick={handleAddToFavorites}
+            >
+              Добавить в избранное
+            </button>
+          )}
         </div>
       </div>
 

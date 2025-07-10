@@ -110,3 +110,32 @@
 .favoriteButton:hover:not(:disabled) {
   opacity: 0.9;
 }
+
+/* Добавим к существующим стилям */
+
+.removeButton {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.2s;
+}
+
+.removeButton:hover {
+  opacity: 0.9;
+}
+
+.backButton {
+  background-color: var(--kp-accent-yellow);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}

@@ -69,7 +69,7 @@ export default function Navbar() {
           onChange={(e) => handleFilterChange("year", e.target.value)}
         >
           <option value="">Все годы</option>
-          <option value="2020">2020-2023</option>
+          <option value="2020">2020-2025</option>
           <option value="2010">2010-2019</option>
           <option value="2000">2000-2009</option>
           <option value="1990">1990-1999</option>
