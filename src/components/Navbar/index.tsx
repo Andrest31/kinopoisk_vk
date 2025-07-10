@@ -1,5 +1,6 @@
 import { Link, NavLink, useSearchParams } from "react-router-dom";
 import styles from "./styles.module.css";
+import { Kinopoisk } from '../../../public/Kinopoisk';
 
 export default function Navbar() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,8 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.logoContainer}>
         <Link to="/" className={styles.logo}>
-          КИНОПОИСК
+          <Kinopoisk className={styles.logoIcon} />
+          <span>КИНОПОИСК</span>
         </Link>
       </div>
 
