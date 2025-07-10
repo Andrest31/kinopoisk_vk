@@ -1,0 +1,119 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background-color: var(--kp-dark-bg);
+  border-bottom: 1px solid var(--kp-border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  color: var(--kp-accent-yellow);
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+  margin-right: 30px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
+  margin-right: auto;
+}
+
+.navLink {
+  color: var(--kp-text-primary);
+  text-decoration: none;
+  font-size: 0.95em;
+  padding: 5px 0;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--kp-accent-yellow);
+}
+
+.active {
+  color: var(--kp-accent-yellow);
+  font-weight: bold;
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--kp-accent-yellow);
+}
+
+.filterSection {
+  display: flex;
+  gap: 15px;
+}
+
+.filterSelect {
+  background-color: var(--kp-card-bg);
+  color: var(--kp-text-primary);
+  border: 1px solid var(--kp-border-color);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.filterSelect:hover {
+  border-color: var(--kp-accent-yellow);
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--kp-accent-yellow);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .navLinks {
+    margin: 15px 0;
+  }
+  
+  .filterSection {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .filterSelect {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+.resetButton {
+  background-color: transparent;
+  color: var(--kp-text-secondary);
+  border: 1px solid var(--kp-border-color);
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.resetButton:hover {
+  color: var(--kp-accent-yellow);
+  border-color: var(--kp-accent-yellow);
+}
