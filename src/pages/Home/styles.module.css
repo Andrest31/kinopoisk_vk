@@ -14,7 +14,7 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 30px;
   justify-content: center;
-  margin-top: 15px;
+  margin: 75px 0;
 }
 
 /* Медиа-запросы для адаптивности */

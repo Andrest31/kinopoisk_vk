@@ -22,6 +22,7 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
+      <div className={styles.navbarContent}>
       <div className={styles.logoContainer}>
         <Link to="/" className={styles.logo}>
           <Kinopoisk className={styles.logoIcon} />
@@ -92,6 +93,7 @@ export default function Navbar() {
         >
           Сбросить
         </button>
+      </div>
       </div>
     </nav>
   );

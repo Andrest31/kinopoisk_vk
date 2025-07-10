@@ -11,6 +11,7 @@
 
 body {
   margin: 0;
+  min-width: 1400px;
   background-color: var(--kp-dark-bg);
   color: var(--kp-text-primary);
   font-family: 'Arial', sans-serif;
@@ -19,7 +20,8 @@ body {
 }
 
 #root {
-  max-width: 1400px;
+  max-width:1600px;
+  min-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
