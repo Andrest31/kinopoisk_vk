@@ -1,0 +1,51 @@
+.container {
+  padding: 20px;
+}
+
+.title {
+  margin-bottom: 30px;
+  color: var(--kp-text-primary);
+}
+
+.movieList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--kp-text-secondary);
+  font-size: 1.2em;
+}
+
+/* Адаптивные стили как в Home */
+@media (max-width: 2500px) {
+  .movieList {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .movieList {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .movieList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .movieList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .movieList {
+    grid-template-columns: 1fr;
+  }
+}

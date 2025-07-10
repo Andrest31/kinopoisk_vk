@@ -1,26 +1,28 @@
-// src/components/MovieCard.tsx
-import React from 'react';
+import { Link } from 'react-router-dom';
 import type { Movie } from '../../data/movies';
-import './MovieCard.css';
+import styles from './styles.module.css';
 
 interface MovieCardProps {
   movie: Movie;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+export default function MovieCard({ movie }: MovieCardProps) {
   return (
-    <div className="movie-card">
-      <img src={movie.poster} alt={movie.title} className="movie-poster" />
-      <div className="movie-info">
-        <h3>{movie.title}</h3>
-        <p className="movie-year">Год: {movie.year}</p>
-        <p className="movie-rating">Рейтинг: {movie.rating}</p>
-        {/* Можно добавить жанры, если захочешь, например:
-        <p className="movie-genres">Жанры: {movie.genres.join(', ')}</p>
-        */}
+    <Link to={`/movie/${movie.id}`} className={styles.card}>
+      <div className={styles.posterWrapper}>
+        <img 
+          src={movie.poster} 
+          alt={movie.title}
+          className={styles.poster}
+        />
       </div>
-    </div>
+      <div className={styles.info}>
+        <h3 className={styles.title}>{movie.title}</h3>
+        <div className={styles.meta}>
+          <span className={styles.year}>{movie.year}</span>
+          <span className={styles.rating}>{movie.rating}</span>
+        </div>
+      </div>
+    </Link>
   );
-};
-
-export default MovieCard;
+}

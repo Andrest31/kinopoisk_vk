@@ -1,18 +1,16 @@
-// src/App.tsx
-import MovieCard from './components/MovieCard/MovieCard';
-import { mockMovies } from './data/movies';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import MovieDetails from './pages/MovieDetail';
 import './App.css';
 
 function App() {
   return (
-    <div className="app-container">
-      <h1 className="app-title">Фильмы</h1> {/* Более лаконичное название */}
-      <div className="movie-list">
-        {mockMovies.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,0 +1,55 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--kp-card-bg);
+  padding: 25px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  color: var(--kp-text-primary);
+}
+
+.modal h3 {
+  margin-top: 0;
+  color: var(--kp-accent-yellow);
+}
+
+.modal p {
+  margin-bottom: 25px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.confirmButton {
+  background-color: var(--kp-accent-yellow);
+  color: #000;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cancelButton {
+  background-color: transparent;
+  color: var(--kp-text-primary);
+  border: 1px solid var(--kp-text-secondary);
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
