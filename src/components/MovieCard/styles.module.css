@@ -1,61 +1,80 @@
-/* src/components/MovieCard.css */
-.movie-card {
+.card {
+  display: block;
   background-color: var(--kp-card-bg);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Более выраженная тень */
-  display: flex;
-  flex-direction: column;
-  text-align: left; /* Текст внутри карточки выравниваем по левому краю */
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  cursor: pointer; /* Добавим курсор pointer для имитации ссылки */
-}
-
-.movie-card:hover {
-  transform: translateY(-5px); /* Эффект поднятия при наведении */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6); /* Усиленная тень при наведении */
-}
-
-.movie-poster {
-  width: 100%;
-  height: 330px; /* Увеличим высоту постера */
-  object-fit: cover;
-  display: block; /* Убираем лишние пробелы под изображением */
-}
-
-.movie-info {
-  padding: 15px;
-  flex-grow: 1; /* Чтобы информация занимала все доступное пространство */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Чтобы рейтинг был внизу, если нужно */
-}
-
-.movie-info h3 {
-  margin-top: 0;
-  margin-bottom: 8px;
-  font-size: 1.2em;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
   color: var(--kp-text-primary);
-  white-space: nowrap; /* Запрещаем перенос строки */
-  overflow: hidden; /* Обрезаем текст, который не помещается */
-  text-overflow: ellipsis; /* Добавляем многоточие */
 }
 
-.movie-info p {
-  margin: 4px 0;
-  font-size: 0.95em;
-  color: var(--kp-text-secondary);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.movie-info .movie-year,
-.movie-info .movie-genres {
-  font-size: 0.85em;
-  color: var(--kp-text-secondary);
+.posterWrapper {
+  position: relative;
+  padding-top: 150%;
+  overflow: hidden;
 }
 
-.movie-info .movie-rating {
+.poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  padding: 15px;
+}
+
+.title {
+  margin: 0 0 10px;
   font-size: 1.1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.genre {
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: rgba(245, 197, 24, 0.1);
+  color: var(--kp-accent-yellow);
+  border-radius: 4px;
+  font-size: 0.75em;
+  line-height: 1;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  color: var(--kp-text-secondary);
+}
+
+.separator {
+  color: var(--kp-text-secondary);
+  opacity: 0.6;
+}
+
+.rating {
+  color: var(--kp-accent-yellow);
   font-weight: bold;
-  color: var(--kp-accent-yellow); /* Акцентный цвет для рейтинга */
-  margin-top: 10px; /* Отделяем рейтинг от остальной информации */
+}
+
+.year {
+  font-weight: 500;
 }

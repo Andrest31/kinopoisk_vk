@@ -18,9 +18,18 @@ export default function MovieCard({ movie }: MovieCardProps) {
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{movie.title}</h3>
+        <div className={styles.genres}>
+          {movie.genres.slice(0, 2).map(genre => (
+            <span key={genre} className={styles.genre}>{genre}</span>
+          ))}
+          {movie.genres.length > 2 && (
+            <span className={styles.genre}>+{movie.genres.length - 2}</span>
+          )}
+        </div>
         <div className={styles.meta}>
           <span className={styles.year}>{movie.year}</span>
-          <span className={styles.rating}>{movie.rating}</span>
+          <span className={styles.separator}>•</span>
+          <span className={styles.rating}>{movie.rating.toFixed(1)}</span>
         </div>
       </div>
     </Link>
