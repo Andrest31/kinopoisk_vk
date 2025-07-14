@@ -47,6 +47,14 @@ export default function Home() {
   if (transformedMovies.length === 0 && !loading) {
     return <div className={styles.notFound}>Фильмы не найдены. Попробуйте изменить параметры поиска.</div>;
   }
+if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingSpinner}></div>
+        <p>Загрузка фильмов...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.movieList}>
@@ -58,7 +66,6 @@ export default function Home() {
           <MovieCard movie={movie} />
         </div>
       ))}
-      {loading && <div className={styles.loading}>Загрузка...</div>}
     </div>
   );
 }
