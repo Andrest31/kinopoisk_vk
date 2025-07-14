@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const API_BASE_URL = 'https://api.kinopoisk.dev/v1.4';
-const API_TOKEN = 'FMD7AJJ-NTBMXFP-KZ74NYS-ZFY34D7';
+const API_TOKEN = 'PJY8W9Z-HV946GH-MT2Y6NG-ZPK31AQ';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
