@@ -12,7 +12,7 @@ const transformMovieData = (movie: Movie): Movie => ({
   enName: movie.enName,
   year: movie.year || 0,
   rating: movie.rating || { kp: 0 },
-  poster: movie.poster,
+  poster: movie.poster || { url: '/empty.png' },
   genres: movie.genres || [],
   countries: movie.countries || [],
   description: movie.description || movie.shortDescription || '',
