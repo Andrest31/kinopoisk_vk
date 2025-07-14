@@ -1,4 +1,3 @@
-// src/hooks/useMovies.ts
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getMovies, type Movie } from '../api/kinopoisk';
@@ -21,16 +20,37 @@ export default function useMovies(): UseMoviesResult {
     const loadMovies = async () => {
       setLoading(true);
       try {
-        const params = {
-          page,
-          limit: 50,
-          'genres.name': searchParams.get('genre') || undefined,
-          year: searchParams.get('year') || undefined,
-          'rating.kp': searchParams.get('rating') || undefined,
+        // Получаем параметры из URL
+        const genreParams = searchParams.getAll('genre');
+        const ratingParam = searchParams.get('rating');
+        const yearsParam = searchParams.get('years');
+
+        // Формируем параметры запроса
+        const params: Record<string, string | string[]> = {
+          page: page.toString(),
+          limit: '50'
         };
 
+        // Добавляем жанры, если они есть
+        if (genreParams.length > 0) {
+          params['genres.name'] = genreParams;
+        }
+
+        // Добавляем рейтинг (формат "min-max")
+        if (ratingParam) {
+          params['rating.kp'] = ratingParam;
+        }
+
+        // Добавляем годы (формат "start-end")
+        if (yearsParam) {
+          const [start, end] = yearsParam.split('-');
+          params['releaseYears.start'] = start;
+          params['releaseYears.end'] = end;
+        }
+
         const { docs } = await getMovies(params);
-        setMovies(prev => [...prev, ...docs]);
+        
+        setMovies(prev => page === 1 ? docs : [...prev, ...docs]);
         setHasMore(docs.length > 0);
       } catch (error) {
         console.error('Error loading movies:', error);
@@ -42,6 +62,7 @@ export default function useMovies(): UseMoviesResult {
     loadMovies();
   }, [page, searchParams]);
 
+  // Сбрасываем страницу при изменении фильтров
   useEffect(() => {
     setPage(1);
     setMovies([]);

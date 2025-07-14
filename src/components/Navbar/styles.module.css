@@ -141,3 +141,115 @@
   color: var(--kp-accent-yellow);
   border-color: var(--kp-accent-yellow);
 }
+
+/* Стили для фильтров */
+.filterSection {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.filterDropdown {
+  position: relative;
+}
+
+.filterButton {
+  padding: 8px 16px;
+  background-color: var(--kp-card-bg);
+  color: var(--kp-text-primary);
+  border: 1px solid var(--kp-border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+}
+
+.filterButton:hover {
+  border-color: var(--kp-accent-yellow);
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--kp-card-bg);
+  border: 1px solid var(--kp-border-color);
+  border-radius: 4px;
+  padding: 15px;
+  z-index: 1000;
+  min-width: 250px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 5px;
+}
+
+.genreList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.genreItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.genreItem:hover {
+  color: var(--kp-accent-yellow);
+}
+
+.rangeInputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.rangeInputs input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--kp-border-color);
+  border-radius: 4px;
+  background-color: var(--kp-dark-bg);
+  color: var(--kp-text-primary);
+}
+
+.rangeInputs input:focus {
+  outline: none;
+  border-color: var(--kp-accent-yellow);
+}
+
+.applyButton {
+  width: 100%;
+  padding: 8px;
+  background-color: var(--kp-accent-yellow);
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.applyButton:hover {
+  opacity: 0.9;
+}
+
+.resetButton {
+  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--kp-text-secondary);
+  border: 1px solid var(--kp-border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.resetButton:hover {
+  color: var(--kp-accent-yellow);
+  border-color: var(--kp-accent-yellow);
+}
