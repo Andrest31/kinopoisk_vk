@@ -1,69 +1,38 @@
-# React + TypeScript + Vite
+# Просмотр информации о фильмах
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Запуск проекта
 
-Currently, two official plugins are available:
+```npm install```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```npm run dev```
 
-## Expanding the ESLint configuration
+После этого: 
+- Фронтенд работает по адресу http://127.0.0.1:5173.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+В данном проекте используются:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Vite для более быстрой сборки и удобной разработки с перезагрузкой сайта без повторной сборки
+- Axios так как проект не требует сложной синхронизации данных
+- ESLint для предотвращения ошибок до сборки и деплоя
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Функциональные возможности
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+ -  Просмотр списка фильмов
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    ![](https://github.com/user-attachments/assets/bb45ced0-4b4b-46ac-88c3-b25c6bffccda)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+ -  Фильтрация фильмов
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ![](https://github.com/user-attachments/assets/05ea1db6-484e-42b1-b021-16df626e0ca2)
+
+ -  Просмотр информации о фильме: описание и актёры
+
+    ![](https://github.com/user-attachments/assets/b81605b3-439f-4af1-9487-fffc95341c64)
+
+ -  Избранное
+
+    ![изображение](https://github.com/user-attachments/assets/4d7eda15-622b-4db5-b0d7-b441edbd2606)
+
+ -  Добавление фильма через модальное окно
+
+    ![изображение](https://github.com/user-attachments/assets/3df33d8f-a430-4f5e-8e35-40078e12df67)
