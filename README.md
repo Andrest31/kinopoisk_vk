@@ -19,20 +19,28 @@
 
  -  Просмотр списка фильмов
 
-    ![](https://github.com/user-attachments/assets/bb45ced0-4b4b-46ac-88c3-b25c6bffccda)
+    <img width="1896" height="921" alt="изображение" src="https://github.com/user-attachments/assets/0f42e16b-1443-4f5c-aa44-e39e82ef5c62" />
 
  -  Фильтрация фильмов
 
-    ![](https://github.com/user-attachments/assets/05ea1db6-484e-42b1-b021-16df626e0ca2)
+    <img width="1898" height="927" alt="изображение" src="https://github.com/user-attachments/assets/6887cb09-1f12-4eb1-a08c-ef9089dca6de" />
 
  -  Просмотр информации о фильме: описание и актёры
 
-    ![](https://github.com/user-attachments/assets/b81605b3-439f-4af1-9487-fffc95341c64)
+    <img width="1893" height="887" alt="изображение" src="https://github.com/user-attachments/assets/f2d880e2-d846-4559-a516-f5d4bcb09b8f" />
+
+    <img width="1897" height="201" alt="изображение" src="https://github.com/user-attachments/assets/0c14bd37-29c3-4a29-91d4-fd4e4abdf78f" />
+
+    <img width="1896" height="762" alt="изображение" src="https://github.com/user-attachments/assets/f132f8d2-537d-4700-97a8-c5937838145f" />
+
+ -  Трейлер
+
+    <img width="1918" height="920" alt="изображение" src="https://github.com/user-attachments/assets/e3816f37-2b15-4d3d-a6ab-152d2ac1fe8e" />
 
  -  Избранное
 
-    ![изображение](https://github.com/user-attachments/assets/4d7eda15-622b-4db5-b0d7-b441edbd2606)
+    <img width="1920" height="922" alt="изображение" src="https://github.com/user-attachments/assets/ff8ea312-31cc-40dd-9693-0661765e8692" />
 
  -  Добавление фильма через модальное окно
 
-    ![изображение](https://github.com/user-attachments/assets/3df33d8f-a430-4f5e-8e35-40078e12df67)
+    <img width="389" height="181" alt="изображение" src="https://github.com/user-attachments/assets/841e6dde-065e-4c01-bb1a-5c1adf961894" />
