@@ -254,11 +254,11 @@ export default function MovieDetails() {
         <div className={styles.heroContent}>
           <div className={styles.posterContainer}>
             <img
-              src={movie.poster?.url || "/no-poster.jpg"}
+              src={movie.poster?.url || "/empty.png"}
               alt={movie.name}
               className={styles.poster}
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "/no-poster.jpg";
+                (e.target as HTMLImageElement).src = "/empty.png";
               }}
             />
           </div>

@@ -17,7 +17,7 @@ const normalizeFavorites = (movies: unknown): Movie[] => {
     // Обработка постера
     const posterUrl = typeof movie.poster === "string" 
       ? movie.poster 
-      : movie.poster?.url || movie.poster?.previewUrl || "/placeholder-poster.jpg";
+      : movie.poster?.url || movie.poster?.previewUrl || "/empty.png";
 
     return {
       id: movie.id,
