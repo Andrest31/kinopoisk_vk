@@ -1,9 +1,11 @@
+/* src/components/MovieCard/styles.module.css */
 .card {
   position: relative;
   background-color: var(--kp-card-bg);
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 296px;
   height: 100%;
 }
 
@@ -21,17 +23,27 @@
 
 .posterWrapper {
   position: relative;
-  padding-top: 150%;
+  width: 296px;
+  height: 444px;
   overflow: hidden;
+  background-color: #f0f0f0;
 }
 
 .poster {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+.noPoster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e0e0;
+  color: #666;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .info {

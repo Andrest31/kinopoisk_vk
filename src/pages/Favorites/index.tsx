@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
-import type { Movie } from "../../data/movies";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import styles from "./styles.module.css";
+
+interface Movie {
+  id: number;
+  title: string;
+  year: number;
+  rating: number;
+  poster?: string;
+  genres?: string[];
+  description?: string;
+}
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<Movie[]>([]);
@@ -11,9 +20,18 @@ export default function Favorites() {
       try {
         const saved = localStorage.getItem("favoriteMovies");
         if (saved) {
-          const parsed = JSON.parse(saved);
-          console.log("Loaded favorites:", parsed); // Добавим лог для отладки
-          setFavorites(parsed);
+          const parsed: Partial<Movie>[] = JSON.parse(saved);
+          // Нормализуем данные, гарантируя наличие всех обязательных полей
+          const normalizedFavorites = parsed.map((movie) => ({
+            id: movie.id || 0,
+            title: movie.title || 'Без названия',
+            year: movie.year || 0,
+            rating: movie.rating || 0,
+            poster: movie.poster,
+            genres: movie.genres,
+            description: movie.description
+          }));
+          setFavorites(normalizedFavorites as Movie[]);
         }
       } catch (error) {
         console.error("Error loading favorites:", error);
@@ -22,7 +40,6 @@ export default function Favorites() {
 
     loadFavorites();
 
-    // Добавим обработчик для обновления при изменениях из других вкладок
     window.addEventListener("storage", loadFavorites);
     return () => window.removeEventListener("storage", loadFavorites);
   }, []);
