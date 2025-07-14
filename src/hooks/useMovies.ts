@@ -9,6 +9,14 @@ interface UseMoviesResult {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
+interface MoviesApiParams {
+  page: number;
+  limit: number;
+  genres?: string[];
+  year?: string;
+  'rating.kp'?: string;
+}
+
 export default function useMovies(): UseMoviesResult {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
@@ -20,34 +28,31 @@ export default function useMovies(): UseMoviesResult {
     const loadMovies = async () => {
       setLoading(true);
       try {
-        // Получаем параметры из URL
-        const genreParams = searchParams.getAll('genre');
-        const ratingParam = searchParams.get('rating');
-        const yearsParam = searchParams.get('years');
-
-        // Формируем параметры запроса
-        const params: Record<string, string | string[]> = {
-          page: page.toString(),
-          limit: '50'
+        // Формируем параметры запроса в правильном формате
+        const params: MoviesApiParams = {
+          page,
+          limit: 50
         };
 
-        // Добавляем жанры, если они есть
-        if (genreParams.length > 0) {
-          params['genres.name'] = genreParams;
+        // Добавляем жанры в виде массива
+        const genres = searchParams.getAll('genre');
+        if (genres.length > 0) {
+          params.genres = genres;
         }
 
-        // Добавляем рейтинг (формат "min-max")
-        if (ratingParam) {
-          params['rating.kp'] = ratingParam;
+        // Добавляем рейтинг если есть
+        const rating = searchParams.get('rating');
+        if (rating) {
+          params['rating.kp'] = rating;
         }
 
-        // Добавляем годы (формат "start-end")
-        if (yearsParam) {
-          const [start, end] = yearsParam.split('-');
-          params['releaseYears.start'] = start;
-          params['releaseYears.end'] = end;
+        // Добавляем годы если есть
+        const years = searchParams.get('years');
+        if (years) {
+          params.year = years;
         }
 
+        // Делаем запрос с правильными параметрами
         const { docs } = await getMovies(params);
         
         setMovies(prev => page === 1 ? docs : [...prev, ...docs]);

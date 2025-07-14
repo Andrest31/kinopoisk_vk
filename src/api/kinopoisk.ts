@@ -49,22 +49,43 @@ export interface Movie {
   }[];
 }
 
-export const getMovies = async (params: {
+interface GetMoviesParams {
   page?: number;
   limit?: number;
-  'genres.name'?: string;
+  genres?: string[];
   year?: string;
   'rating.kp'?: string;
-}): Promise<{ docs: Movie[] }> => {
-  const response = await api.get('/movie', {
-    params: {
-      page: params.page || 1,
-      limit: params.limit || 50,
-      ...params,
-    },
-  });
+}
+
+export const getMovies = async (params: GetMoviesParams): Promise<{ docs: Movie[] }> => {
+  const queryParams = new URLSearchParams();
+  
+  // Обязательные параметры
+  queryParams.set('page', (params.page || 1).toString());
+  queryParams.set('limit', (params.limit || 50).toString());
+
+  // Жанры
+  if (params.genres && params.genres.length > 0) {
+    params.genres.forEach((genre: string) => {
+      queryParams.append('genres.name', genre);
+    });
+  }
+
+  // Год
+  if (params.year) {
+    queryParams.set('year', params.year);
+  }
+
+  // Рейтинг
+  if (params['rating.kp']) {
+    queryParams.set('rating.kp', params['rating.kp']);
+  }
+
+  const response = await api.get(`/movie?${queryParams.toString()}`);
   return response.data;
 };
+
+
 
 export const getMovieById = async (id: number): Promise<Movie> => {
   const response = await api.get(`/movie/${id}`);
