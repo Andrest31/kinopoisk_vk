@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import type { Movie } from "../../api/kinopoisk";
 
 interface MovieCardProps {
-  movie: {
-    id: number;
-    title: string | { name?: string }; // Может быть объектом или строкой
-    year: number;
-    rating: number | { kp?: number }; // Рейтинг может быть числом или объектом
-    poster?: string;
-    genres?: string[] | { name: string }[]; // Жанры могут быть массивом строк или объектов
-    description?: string;
-  };
+  movie: Movie;
   isFavorite?: boolean;
   onRemoveFavorite?: (id: number) => void;
 }
@@ -20,53 +13,48 @@ export default function MovieCard({
   isFavorite = false,
   onRemoveFavorite,
 }: MovieCardProps) {
-  // Нормализуем название фильма
   const getTitle = () => {
-    if (typeof movie.title === "string") {
-      return movie.title;
-    } else if (movie.title && typeof movie.title === "object" && "name" in movie.title) {
-      return (movie.title as { name?: string }).name || "Без названия";
-    }
-    return "Без названия";
+    return movie.name ?? movie.alternativeName ?? movie.enName ?? "Без названия";
   };
 
-  // Нормализуем жанры
-  const getGenres = (): string[] => {
-    if (!movie.genres) return [];
-    return movie.genres.map((genre) =>
-      typeof genre === "object" ? genre.name : genre
-    );
+  const getPoster = () => {
+    if (typeof movie.poster === "string") return movie.poster;
+    return movie.poster?.url || movie.poster?.previewUrl;
   };
 
-  // Нормализуем рейтинг
-  const getRating = (): string => {
-    let ratingValue: number | undefined;
+  const getGenres = () => {
+    return movie.genres?.map(g => g.name) || [];
+  };
 
-    if (typeof movie.rating === "number") {
-      ratingValue = movie.rating;
-    } else if (typeof movie.rating === "object" && movie.rating?.kp !== undefined) {
-      ratingValue = movie.rating.kp;
-    }
+  const getRating = () => {
+    return movie.rating?.kp?.toFixed(1) || "0.0";
+  };
 
-    return ratingValue?.toFixed(1) ?? "0.0";
+  const getYear = () => {
+    return movie.year || "—";
   };
 
   const genres = getGenres();
+  const title = getTitle();
+  const poster = getPoster();
+  const rating = getRating();
+  const year = getYear();
 
   return (
     <div className={styles.card}>
       <Link to={`/movie/${movie.id}`} className={styles.cardLink}>
         <div className={styles.posterWrapper}>
-          {movie.poster ? (
-            <img src={movie.poster} alt={getTitle()} className={styles.poster} />
-          ) : (
-            <div className={`${styles.poster} ${styles.noPoster}`}>
-              <span>Нет постера</span>
-            </div>
-          )}
+          <img
+            src={poster}
+            alt={title}
+            className={styles.poster}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "/placeholder-poster.jpg";
+            }}
+          />
         </div>
         <div className={styles.info}>
-          <h3 className={styles.title}>{getTitle()}</h3>
+          <h3 className={styles.title}>{title}</h3>
           {genres.length > 0 && (
             <div className={styles.genres}>
               {genres.slice(0, 2).map((genre, index) => (
@@ -77,8 +65,8 @@ export default function MovieCard({
             </div>
           )}
           <div className={styles.meta}>
-            <span className={styles.year}>{movie.year}</span>
-            <span className={styles.rating}>{getRating()}</span>
+            <span className={styles.year}>{year}</span>
+            <span className={styles.rating}>{rating}</span>
           </div>
         </div>
       </Link>
@@ -90,6 +78,7 @@ export default function MovieCard({
             onRemoveFavorite(movie.id);
           }}
           aria-label="Удалить из избранного"
+          title="Удалить из избранного"
         >
           ×
         </button>

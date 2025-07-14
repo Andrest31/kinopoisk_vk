@@ -4,15 +4,23 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import styles from './styles.module.css';
 import type { Movie } from '../../api/kinopoisk';
 
-// Функция для преобразования данных API в ожидаемый формат
-const transformMovieData = (movie: Movie) => ({
+// Функция для преобразования данных API в полный формат Movie
+const transformMovieData = (movie: Movie): Movie => ({
   id: movie.id,
-  title: movie.name || movie.alternativeName || movie.enName || 'Без названия',
+  name: movie.name,
+  alternativeName: movie.alternativeName,
+  enName: movie.enName,
   year: movie.year || 0,
-  rating: movie.rating?.kp || 0,
-  poster: movie.poster?.url || movie.poster?.previewUrl || '/placeholder-poster.jpg',
-  genres: movie.genres?.map(g => g.name) || [],
+  rating: movie.rating || { kp: 0 },
+  poster: movie.poster,
+  genres: movie.genres || [],
+  countries: movie.countries || [],
   description: movie.description || movie.shortDescription || '',
+  shortDescription: movie.shortDescription,
+  movieLength: movie.movieLength,
+  ageRating: movie.ageRating,
+  videos: movie.videos,
+  persons: movie.persons
 });
 
 export default function Home() {
@@ -37,7 +45,7 @@ export default function Home() {
   }, [loading, hasMore, setPage]);
 
   if (transformedMovies.length === 0 && !loading) {
-    return <div>Фильмы не найдены. Попробуйте изменить параметры поиска.</div>;
+    return <div className={styles.notFound}>Фильмы не найдены. Попробуйте изменить параметры поиска.</div>;
   }
 
   return (
